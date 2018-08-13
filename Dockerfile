@@ -30,7 +30,7 @@ RUN apk update \
 COPY config/nginx.conf /etc/nginx/nginx.conf
 COPY config/php.ini /etc/php7/php.ini
 COPY config/php-fpm.conf /etc/php7/php-fpm.d/php-fpm.conf
-COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY config/supervisord.ini /etc/supervisor.d/nginx-supervisor.ini
 RUN mkdir -p /etc/nginx/sites-enabled
 RUN mkdir -p /var/log/supervisor
 
@@ -40,4 +40,4 @@ WORKDIR /var/www/html
 VOLUME /var/www/html
 
 EXPOSE 80
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+CMD ["/usr/bin/supervisord"]
