@@ -41,4 +41,5 @@ WORKDIR /var/www
 VOLUME /var/www
 
 EXPOSE 80
+EXPOSE 9000
 CMD ["/usr/bin/supervisord"]
