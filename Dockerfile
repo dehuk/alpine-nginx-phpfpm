@@ -27,17 +27,18 @@ RUN apk update \
     && rm -rf /var/cache/apk/*
 
 # Configure
-COPY config/nginx.conf /etc/nginx/nginx.conf
-COPY config/php.ini /etc/php7/php.ini
-COPY config/php-fpm.conf /etc/php7/php-fpm.d/php-fpm.conf
+COPY config/nginx/nginx.conf /etc/nginx/nginx.conf
+COPY config/nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY config/php/php.ini /etc/php7/php.ini
+COPY config/php/php-fpm.conf /etc/php7/php-fpm.d/php-fpm.conf
 COPY config/supervisord.ini /etc/supervisor.d/nginx-supervisor.ini
-RUN mkdir -p /etc/nginx/sites-enabled
-RUN mkdir -p /var/log/supervisor
+RUN mkdir -p /usr/share/nginx/html /var/log/supervisor \
+    && echo "Index page" >> /usr/share/nginx/html/index.html
 
 # Additional settings
-RUN mkdir -p /var/www/html
-WORKDIR /var/www/html
-VOLUME /var/www/html
+RUN mkdir -p /var/www
+WORKDIR /var/www
+VOLUME /var/www
 
 EXPOSE 80
 CMD ["/usr/bin/supervisord"]
