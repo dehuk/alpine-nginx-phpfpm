@@ -31,6 +31,7 @@ COPY config/nginx.conf /etc/nginx/nginx.conf
 COPY config/php.ini /etc/php7/php.ini
 COPY config/php-fpm.conf /etc/php7/php-fpm.d/php-fpm.conf
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+RUN mkdir -p /etc/nginx/sites-enabled
 
 # Additional settings
 RUN mkdir -p /var/www/html
