@@ -30,7 +30,7 @@ RUN apk update \
 COPY config/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY config/nginx/default.conf /etc/nginx/conf.d/default.conf
 #COPY config/php/php.ini /etc/php7/php.ini
-#COPY config/php/php-fpm.conf /etc/php7/php-fpm.d/php-fpm.conf
+COPY config/php/php-fpm.conf /etc/php7/php-fpm.d/custom.php-fpm.conf
 COPY config/supervisord.ini /etc/supervisor.d/nginx-supervisor.ini
 RUN mkdir -p /usr/share/nginx/html /var/log/supervisor \
     && echo "Index page" >> /usr/share/nginx/html/index.html
